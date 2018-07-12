@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HashTag</title>
+</head>
+<body>
+    <h2 id="generator">HashTag Generator</h2>
+    <label>Enter a sentence</label> <br/>
+    <input type="text" id="sentence"/>
+    <button id="generateBtn">Generate</button>
+
+    <h2 id="output"></h2>
+    <script>
+        var generatorHandle = document.getElementById('generator');
+        var sentenceHandle = document.getElementById('sentence');
+        var btnHandle = document.getElementById('generateBtn');
+        var outputHandle = document.getElementById('output');
+
+        btnHandle.addEventListener('click', function(){
+            var userInput = sentenceHandle.value;
+            if(userInput === '') {
+                outputHandle.innerHTML = 'Can not be blank';
+            } else {
+                var output = '#';
+                userInput.split(' ').forEach(function(word){
+                    output += word[0].toUpperCase() + word.slice(1);
+                })
+                sentenceHandle.value = '';
+                outputHandle.innerHTML = output;
+            }
+        }, false);
+    </script>
+</body>
+</html>
