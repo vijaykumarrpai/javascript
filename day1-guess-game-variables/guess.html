@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Guess Game</title>
+    </head>
+    <body>
+        <script>
+            //target_number - snake case
+            //targetNumber - camel case - variable, function names
+            //TargetNumber - pascal case - class names
+            var name = prompt('Enter your name');
+            console.log('Welcome to the guess game ' + name);
+
+            var targetNumber = Math.ceil(Math.random() * 100)
+            console.log(targetNumber);
+
+            var maxGuess = 10;
+            var playerGuess = 0;
+            var guessCount = 0;
+            var guessLeft = 10;
+            for(var i = 0; i < maxGuess; i++)
+            {
+                var guess = prompt("Guess my number");
+                var guessCount = guessCount + 1
+
+                console.log('Your guesses are : ' + guessCount);
+                
+                var guessLeft = guessLeft - 1;
+                console.log('You are left with ' + guessLeft + ' guesses');
+                
+                if (guess < targetNumber)
+                {
+                    console.log('OOPS!!! Your guess was LOW');
+                }
+                else if(guess > targetNumber)
+                {
+                    console.log('OOPS!!! Your guess was high');
+                }
+                else if(guess == targetNumber)
+                {
+                    console.log('Good job ' + name + ' You guessed my number in ' + guessCount + ' guesses!');
+                    break;
+                }
+            }
+            if (i == maxGuess)
+            {
+                console.log('Sorry. You didnt get any my number. My number was ' + targetNumber)
+            }
+        </script>
+    </body>
+</html>
