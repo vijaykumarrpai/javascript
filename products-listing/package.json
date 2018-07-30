@@ -1,0 +1,14 @@
+{
+  "name": "products-listing",
+  "version": "1.0.0",
+  "description": "to find data from 3rd party api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vijay",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
