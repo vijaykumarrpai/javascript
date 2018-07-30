@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Count</h1>
+    <h2 id="myNumber">0</h2>
+    <br/>
+    <button id="btn1">up</button>
+    <button id="btn2">down</button>
+    <script>
+        var count = 0;
+        var myNumberHandle = document.getElementById('myNumber');
+        var btnHandle1 = document.getElementById('btn1');
+        var btnHandle2 = document.getElementById('btn2');
+        btnHandle1.addEventListener('click', function(){
+            myNumberHandle.innerHTML = ++count;
+        }, false);
+        
+        btnHandle2.addEventListener('click', function(){
+            if(count > 0) {
+                --count;
+            myNumberHandle.innerHTML = count;
+            }
+        }, false);
+    </script>
+</body>
+</html>
