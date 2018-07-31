@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Enquiry Form</title>
+    <style>
+    form 
+    {
+        color: red;
+        background: cornsilk;
+    }
+
+    body
+    {
+        background-color: lightblue;
+    }
+
+    #head
+    {
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div id="head">
+        <h2>Enquiry Form</h2>
+    </div>
+    
+
+    <form id="enquiryForm" action="./index.html">
+        <table>
+    <tr>
+       <td><label for="name">Name</label></td>
+       <td><input type="text" name="name" id="name"/></td>
+       <td><span id="nameError"></span></td>
+    </tr>
+
+    <tr>
+        <td><label for="mobile">Mobile</label></td>
+        <td><input type="text" name="mobile" id="mobile"/></td>
+        <td><span id="mobileError"></span></td>
+    </tr>
+
+    <tr>
+       <td><label for="email">Email</label></td>
+        <td><input type="email" name="email" id="email"/></td>
+        <td><span id="emailError"></span></td>
+    </tr>
+
+    <tr>
+        <td><label>Gender</label></td>
+        <td><input type="radio" name="gender" value="male" id="male"/><label for="male">Male</label></td>
+        <td><input type="radio" name="gender" value="female" id="female"/><label for="female">Female</label></td>
+    </tr>
+
+    <tr>
+        <td><label for="languages">Languages</label></td>
+        <td><select name="languages" id="languages">
+            <option value="">Select</option>
+            <option value="js">JavaScript</option>
+            <option value="py">Python</option>
+            <option value="rb">Ruby</option>
+        </select></tr></td>
+    
+    <tr>
+       <td><label for="courses">Courses</label></td>
+        <td><select name="courses" id="courses">
+            <option value="">Select</option>
+            <option value="mern">MERN</option>
+            <option value="react">React</option>
+            <option value="node">Node</option>
+            <option value="django">Python + Django</option>
+            <option value="ror">ROR</option>
+        </select></td></tr>
+    
+        <tr>
+        <td><label>Preference</label></td>
+        <td><input type="radio" name="preference" value="weekdays" id="weekdays"/><label for="weekdays">Weekdays</label>
+        <input type="radio" name="preference" value="weekends" id="weekends"/><label for="weekends">Weekends</label></td></tr>
+
+        <tr>
+        <td><label for="experience">Experience</label></td>
+        <td><input type="number" min="1" max="15" id="experience"></td>
+        </tr>
+        
+        <tr>
+        <td><label for="about">Tell us about yourself</label></td>
+        <td><textarea name="about" id="about"></textarea></td>
+        </tr>
+        
+        <tr>
+        <td><input type="checkbox" name="permission" id="permission">
+        <label for="permission">I grant permission to contact me</label></td></tr>
+
+        <tr>
+        <td><input type="submit" value="submit enquiry form"></td>
+        <td><input type="button" value="reset form" id="resetBtn"></td>
+        </tr>
+    </table>
+    </form>
+
+    <script>
+        var formHandle = document.getElementById('enquiryForm');
+
+        var nameHandle = document.getElementById('name');
+        var nameErrorHandle = document.getElementById('nameError');
+
+        var mobileHandle = document.getElementById('mobile'); // refers to input type
+        var mobileErrorHandle = document.querySelector('#mobileError'); // refers to span tag
+
+        var emailHandle = document.querySelector('#email');
+        var emailErrorHandle = document.querySelector('#emailError');
+        
+        var resetHandle = document.getElementById('resetBtn');
+
+        var hasErrors = {
+            name: true,
+            mobile: true,
+            email: true
+        }
+
+        function validateName() {
+            if(nameHandle.value === '') {
+                nameErrorHandle.innerHTML = 'can not be empty';
+                hasErrors.name = true;
+            } else {
+                nameErrorHandle.innerHTML = '';
+                hasErrors.name = false;
+            }
+        }
+
+        function validateMobile() {
+            if(mobileHandle.value === '') {
+                mobileErrorHandle.innerHTML = 'can not be empty';
+                hasErrors.mobile = true;
+            } else if (mobileHandle.value.length !== 10) {
+                mobileErrorHandle.innerHTML = 'should be of 10 digits only';
+                hasErrors.mobile = true;
+            } else {
+                mobileErrorHandle.innerHTML = '';
+                hasErrors.mobile = false;
+            }
+        }
+
+        function validateEmail() {
+            if(emailHandle.value === '') {
+                emailErrorHandle.innerHTML = 'can not be empty';
+                hasErrors.email = true;
+            } else {
+                emailErrorHandle.innerHTML = '';
+                hasErrors.email = false;
+            }
+        }
+
+        function reset() {
+            document.getElementById('enquiryForm').reset();
+        }
+
+        formHandle.addEventListener('submit', function(e){
+            validateName();
+            validateMobile();
+            validateEmail();
+            
+            if(Object.values(hasErrors).includes(true)) {
+                e.preventDefault();
+            }
+        }, false);
+
+        resetHandle.addEventListener('click', function(){
+            reset();
+        }, false);
+
+        var courses = [{'name':'mern','language':'js'},{'name':'react','language':'js'},{'name':'node','language':'js'},{'name':'python + django','language':'py'},{'name':'ror','language':'rb'}];
+        var select1 = document.getElementById('languages');
+        var select2 = document.getElementById('courses');
+
+        select1.addEventListener('change', function(){
+            select2.innerHTML = 'select';
+            var lang = select1.value;
+            courses.forEach(function(course){
+                var opt = document.createElement('option');
+                if(course.language == lang)
+                {
+                opt.setAttribute('value', course.name);
+                opt.innerHTML = course.name;
+                select2.appendChild(opt);
+                }
+            })
+        }, false);
+    </script>
+</body>
+</html>

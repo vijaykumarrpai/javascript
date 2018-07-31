@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Form</title>
+    <style>
+    form 
+    {
+        color: red;
+        background: cornsilk;
+    }
+
+    body
+    {
+        background-color: lightblue;
+    }
+
+    #head
+    {
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div id="head">
+    <h2>Login Page</h2>
+    </div>
+
+    <form id="loginform" action="./dashboard.html">
+    <table>
+        <tr>
+            <td><label for="username">Username</label></td>
+            <td><input type="text" name="username" id="username" placeholder="Username"></td>
+            <td><span id="usernameError"></span></td>
+        </tr>
+
+        <tr>
+            <td><label for="password">Password</label></td>
+            <td><input type="password" name="password" id="password" placeholder="Password"></td>
+            <td><span id="passwordError"></span></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><label id="show">show</label></td>
+        </tr>
+        <tr>
+            <td></td>
+           <td><label>Password must be of 8 to 128 characters</label></td>
+        </tr>
+
+        <tr>
+            <td><input type="submit" value="login securely"></td>
+        </tr>
+    </table>
+    </form>
+    <script>
+        var formHandle = document.getElementById('loginform');
+
+        var usernameHandle = document.getElementById('username');
+        var usernameErrorHandle = document.getElementById('usernameError');
+
+        var passwordHandle = document.getElementById('password');
+        var passwordErrorHandle = document.getElementById('passwordError');
+
+        var showHandle = document.getElementById('show');
+
+        var hasErrors = {
+            username: true,
+            password: true
+        }
+
+        function validateUsername() {
+            if(usernameHandle.value === '') {
+                usernameErrorHandle.innerHTML = 'username cannot be empty';
+                hasErrors.username = true;
+            } else {
+                usernameErrorHandle.innerHTML = '';
+                hasErrors.username = false;
+            }
+        }
+
+        function validatePassword() {
+            if(passwordHandle.value === '') {
+                passwordErrorHandle.innerHTML = 'Password is required';
+                hasErrors.password = true;
+            } else if (passwordHandle.value.length < 8 || passwordErrorHandle.value.length > 128) {
+                passwordErrorHandle.innerHTML = 'Password must be of the length between 8 to 128 characters';
+                hasErrors.password = true;
+            } else {
+                passwordErrorHandle.innerHTML = '';
+                hasErrors.password = false;
+            }
+        }
+
+        formHandle.addEventListener('submit', function(e){
+            validateUsername();
+            validatePassword();
+
+            if(Object.values(hasErrors).includes(true)) {
+                e.preventDefault();
+            }
+        }, false);
+
+        showHandle.addEventListener('mouseover', function(){
+            passwordHandle.setAttribute('type', 'text');
+        }, false);
+
+        showHandle.addEventListener('mouseout', function(){
+            passwordHandle.setAttribute('type', 'password');
+        }, false);
+
+</script>
+</body>
+</html>
