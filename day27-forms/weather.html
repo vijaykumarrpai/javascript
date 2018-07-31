@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Forecast</title>
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+</head>
+<body>
+    <h2>See the temperature in the given cities</h2>
+
+    <label>City</label>
+    <select id="city">
+        <option value="">Select city</option>
+        <option value="bangalore">Bangalore</option>
+        <option value="mangalore">Mangalore</option>
+        <option value="Chennai">Chennai</option>
+        <option value="hubli">Hubli</option>
+        <option value="dubai">Dubai</option>
+        <option value="delhi">Delhi</option>
+    </select>
+
+    <h2 id="output"></h2>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var cityHandle = document.getElementById('city');
+        var outputHandle = document.getElementById('output');
+        cityHandle.addEventListener('change', function(){
+            var cityInput = cityHandle.value;
+            if(cityInput === '') {
+                outputHandle.innerHTML = 'City cannot be blank';
+            } else {
+            console.log('You selected', cityHandle.value);
+            var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=3ae18949940ecdb295e65ef1a2186a0f&units=metric`;
+
+            axios.get(url)
+            .then(function(response){
+                //outputHandle.innerHTML = `Today's weather is : ${response.data.main.temp} <i class="em em-barely_sunny"></i>`;
+                temperature = `${response.data.main.temp}`;
+                console.log(temperature);
+                if(temperature < 10) {
+                    outputHandle.innerHTML = `Today's weather is : ${response.data.main.temp} <i class="em em-snowflake"></i>`;
+                } else if (temperature > 10 && temperature < 25) {
+                    outputHandle.innerHTML = `Today's weather is : ${response.data.main.temp} <i class="em em-rain_cloud"></i>`;
+                } else if (temperature > 25) {
+                    outputHandle.innerHTML = `Today's weather is : ${response.data.main.temp} <i class="em em-sunny"></i>`;
+                }
+            })
+            .catch(function(err){
+                console.log(err);
+                });
+            }
+        }, false);
+    </script>
+</body>
+</html>
