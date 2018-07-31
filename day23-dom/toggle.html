@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Toggle - text</title>
+</head>
+<body>
+    <h2 id = 'name'>dct academy</h2>
+    <button id = 'nameBtn'>click me to toggle</button>
+
+    <script>
+    var nameHandle = document.getElementById('name');
+    var nameBtnHandle = document.getElementById('nameBtn');
+    var isClicked = false;
+
+    nameBtnHandle.addEventListener('click', function(){
+        if (isClicked) {
+        nameHandle.innerHTML = nameHandle.innerHTML.toLowerCase();
+        isClicked = false;
+        } else {
+        nameHandle.innerHTML = nameHandle.innerHTML.toUpperCase();
+        isClicked = true;
+        }
+    }, false);
+    </script>
+</body>
+</html>

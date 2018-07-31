@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transform string</title>
+</head>
+<body>
+    <!-- h2 is a tag, id is an attribute -->
+    <h2 id = 'name'>dct academy</h2>
+    <button id = 'nameBtn'>click me!! - To upperCase</button>
+
+    <h2 id = 'name1'>BANGALORE</h2>
+    <button id = 'nameBtn1'>click me!! - To lowerCase</button>
+
+    <script>
+        // console.log(document);
+        var nameHandle = document.getElementById('name');
+        var nameBtnHandle = document.getElementById('nameBtn');
+
+        // for our reference to see what the variable holds
+        console.log(nameHandle);
+        console.log(typeof nameHandle);
+        console.log(nameHandle.innerHTML.toUpperCase());
+
+        // for our reference to see what the variable holds
+        console.log(nameBtnHandle);
+        console.log(typeof nameBtnHandle);
+        console.log(nameBtnHandle.innerHTML);
+
+        // Event handler
+        nameBtnHandle.addEventListener('click', function() {
+            var presentText = nameHandle.innerHTML;
+            var transformedText = presentText.toUpperCase();
+            nameHandle.innerHTML = transformedText;
+            //nameHandle.innerHTML = nameHandle.innerHTML.toUpperCase();
+        }, false);
+
+        var nameHandle1 = document.getElementById('name1');
+        var nameBtnHandle1 = document.getElementById('nameBtn1');
+
+        console.log(nameHandle1);
+        console.log(nameHandle1.innerHTML.toLowerCase());
+
+        console.log(nameBtnHandle1);
+        console.log(nameBtnHandle1.innerHTML);
+
+        nameBtnHandle1.addEventListener('click', function(){
+            var presentText1 = nameHandle1.innerHTML;
+            var transformedText1 = presentText1.toLowerCase();
+            nameHandle1.innerHTML = transformedText1;
+        }, false)
+    </script>
+</body>
+</html>
