@@ -1,0 +1,65 @@
+ var appHandle = document.getElementById('app');
+
+       var links = [{
+                title: 'Website',
+                url: 'http://www.dctacademy.com'
+            },
+            {
+                title: 'Facebook',
+                url: 'http://facebook.com/dctacademy.bangalore'
+            },
+            {
+                title: 'github',
+                url: 'http://github.com/dctacademy'
+            }];
+    
+        var table = document.createElement('table');
+        table.setAttribute('border',1);
+        var thead = document.createElement('thead');
+        var tbody = document.createElement('tbody');
+        
+        var tr = document.createElement('tr');
+        var th1 = document.createElement('th');
+        var th2 = document.createElement('th');
+        var text1 = document.createTextNode('title');
+        var text2 = document.createTextNode('url');
+        
+        th1.appendChild(text1);
+        th2.appendChild(text2);
+        
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+
+        thead.appendChild(tr);
+        table.appendChild(thead);
+        
+        table.appendChild(tbody);
+        
+        for(var i = 0; i < links.length; i++) {
+            var row = document.createElement('tr');
+            tbody.appendChild(row);
+
+            var td1 = document.createElement('td');
+            var td2 = document.createElement('td');
+
+            var tdText1 = document.createTextNode(links[i].title);
+            var tdText2 = document.createTextNode(links[i].url);
+
+            td1.appendChild(tdText1);
+            td2.appendChild(tdText2);
+
+            row.appendChild(td1);
+            row.appendChild(td2);
+
+            var anchor = document.createElement('a');
+            anchor.setAttribute('href', links[i].url);
+            console.log(anchor);
+            table.appendChild(row);
+            row.appendChild(td1);
+            row.appendChild(td2);
+            anchor.appendChild(tdText1);
+            td1.appendChild(anchor);
+            td2.appendChild(tdText2);
+        }
+        appHandle.appendChild(table);
+        console.log(table);

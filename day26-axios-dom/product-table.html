@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product-table</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var appHandle = document.getElementById('app');
+        axios.get('https://jsonplaceholder.typicode.com/users')
+        .then(function(response){
+            var products = response.data;
+            var table = `
+                <table border = "1">
+                    <thead>
+                        <tr>
+                            <th> Name </th>
+                            <th> Price (INR) </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${(products.map(function(product){
+                            return `
+                            <tr>
+                                <td>${product.name} </td>
+                                <td>${product.price} </td>
+                            </tr>`;
+                        })).join('')}
+                    </tbody>
+                </table>
+            `;
+            appHandle.innerHTML = table;
+        })
+    </script>
+</body>
+</html>
