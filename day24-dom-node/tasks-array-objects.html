@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task Array</title>
+</head>
+<body>
+    <h2>My tasks</h2>
+    <ul id="myTasks">
+    </ul>
+
+    <button id="btnName">Show me the tasks</button>
+    
+    <script>
+        var tasks = [{
+            title: 'watch a movie',
+            dueDate: '2018-07-07'
+        }, {
+            title: 'catch up with friends',
+            dueDate: '2018-07-07'
+        }];
+
+        var myTaskHandle = document.getElementById('myTasks');
+        var nameBtnHandle = document.getElementById('btnName');
+
+        nameBtnHandle.addEventListener('click', function(){
+            myTaskHandle.innerHTML = '';
+            tasks.forEach(function(task){
+            var li = document.createElement('li');
+            var text = document.createTextNode(`${task.title} - ${task.dueDate}`);
+            li.appendChild(text);
+            myTaskHandle.appendChild(li);
+        });
+    }, false);
+    </script>
+</body>
+</html>
